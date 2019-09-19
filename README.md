@@ -1,2 +1,2 @@
-# HackerRank-Solutions
-These are my submitted hackerrank solutions (topic-wise).
+# Competitive-Solutions
+These are my submitted competitive programming solutions (topic-wise) from different websites.
