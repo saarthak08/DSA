@@ -41,6 +41,10 @@ Node* dequeue() {
 void print_queue() {
 	int x=front;
 	cout << "\n\n\nCurrent Queue: " <<endl;
+	if(length==0) {
+		cout << "Queue is empty!" << endl;
+		return;
+	}
 	for(;x<=rear;x++) {
 		cout << queue[x]->data << "\t";
 	}
