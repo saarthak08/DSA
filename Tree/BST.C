@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<limits.h>
 #include<stdlib.h>
 
 
@@ -17,13 +18,13 @@ void postorderTraversal(struct node *tree);
 struct node *findSmallestElement(struct node *tree);
 struct node *findLargestElement(struct node *tree);
 struct node *deleteElement(struct node *tree, int element);
-void mirrorImage(struct node *tree);
+struct node* mirrorImage(struct node *tree);
 int totalNodes(struct node *tree);
 int totalExternalNodes(struct node *tree);
 int totalInternalNodes(struct node *tree);
 int Height(struct node *tree);
-void deleteTree(struct node *tree);
-
+struct node* deleteTree(struct node *tree);
+struct node* inorderSuccessor(struct node* root,struct node* current,struct node* successor);
 
 int main()
 {
@@ -32,7 +33,7 @@ int main()
 	struct node *ptr;
 	do
 	{
-		printf("\n ******MAIN MENU******* \n");
+		printf("\n\n ******MAIN MENU******* \n");
 		printf("\n 1. Insert Element");
 		printf("\n 2. Preorder Traversal");
 		printf("\n 3. Inorder Traversal");
@@ -52,55 +53,55 @@ int main()
 		switch(option)
 		{
 			case 1:
-			printf("\n Enter the value of the new node : ");
+			printf("\nEnter the value of the new node : ");
 			scanf("%d", &val);
 			tree=insertElement(tree, val);
 			break;
 			case 2:
-			printf("\n The elements of the tree are : \n");
+			printf("\nThe elements of the tree are : \n");
 			preorderTraversal(tree);
 			break;
 			case 3:
-			printf("\n The elements of the tree are : \n");
+			printf("\nThe elements of the tree are : \n");
 			inorderTraversal(tree);
 			break;
 			case 4:
-			printf("\n The elements of the tree are : \n");
+			printf("\nThe elements of the tree are : \n");
 			postorderTraversal(tree);
 			break;
 			case 5:
 			ptr = findSmallestElement(tree);
-			printf("\n Smallest element is :%d",ptr->data);
+			printf("\nSmallest element is :%d",ptr->data);
 			break;
 			case 6:
 			ptr = findLargestElement(tree);
-			printf("\n Largest element is : %d", ptr->data);
+			printf("\nLargest element is : %d", ptr->data);
 			break;
 			case 7:
-			printf("\n Enter the element to be deleted : ");
+			printf("\nEnter the element to be deleted : ");
 			scanf("%d", &val);
-			//tree = deleteElement(tree, val);
+			tree=deleteElement(tree,val);
 			break;
 			case 8:
-			printf("\n Total no. of nodes = %d", totalNodes(tree));
+			printf("\nTotal no. of nodes = %d", totalNodes(tree));
 			break;
 			case 9:
-			printf("\n Total no. of external nodes = %d",
+			printf("\nTotal no. of external nodes = %d",
 			totalExternalNodes(tree));
 			break;
 			case 10:
-			printf("\n Total no. of internal nodes = %d",
+			printf("\nTotal no. of internal nodes = %d",
 			totalInternalNodes(tree));
 			break;
 			case 11:
-			printf("\n The height of the tree = %d",Height(tree));
+			printf("\nThe height of the tree = %d",Height(tree));
 			break;
 			case 12:
-			mirrorImage(tree);
+			tree=mirrorImage(tree);
 			printf("\nTree Mirrored! Please print the tree to view it.\n");
 			break;
 			case 13:
-			deleteTree(tree);
+			tree=deleteTree(tree);
 			break;
 		}
 	} while(option!=14);
@@ -110,7 +111,6 @@ int main()
 
 struct node* insertElement(struct node *tree, int element) {
 	if(tree==NULL) {
-		printf("Hello");
 		tree=(struct node*)malloc(sizeof(struct node));
 		tree->data=element;
 		return tree;
@@ -123,7 +123,7 @@ struct node* insertElement(struct node *tree, int element) {
 			return tree;
 		}
 		else {
-			tree=insertElement(tree->right,element);
+			insertElement(tree->right,element);
 			return tree;
 		}
 	}
@@ -135,10 +135,101 @@ struct node* insertElement(struct node *tree, int element) {
 			return tree;
 		}
 		else {
-			tree=insertElement(tree->left,element);
+			insertElement(tree->left,element);
 			return tree;
 		}
 	}
+}
+
+struct node *deleteElement(struct node *tree, int element) {
+	struct node *pre_ptr, *curr, *ptr, *succ;
+	curr=tree;
+	if(curr==NULL) {
+		printf("\nTree Empty!\n");
+		return tree;
+	}
+	while(curr!=NULL) {
+		if(element==curr->data) {
+			break;
+		}
+		else if(element>curr->data) {
+			curr=curr->right;
+		}
+		else {
+			curr=curr->left;
+		}
+	}
+	if(curr==NULL) {
+		printf("\nNode not found in the tree.\n");
+		return tree;
+	}
+	ptr=curr;
+	curr=tree;
+	while(curr!=NULL) {
+		if(curr->left==ptr||curr->right==ptr) {
+			pre_ptr=curr;
+			break;
+		}
+		else if(element>=curr->data) {
+			curr=curr->right;
+		}
+		else {
+			curr=curr->left;
+		}
+	}
+	if(ptr->left==NULL&&ptr->right==NULL) {
+		if(ptr==tree) {
+			tree=NULL;
+		}
+		else {
+			if(pre_ptr->left==ptr) {
+				pre_ptr->left=NULL;
+			}
+			else {
+				pre_ptr->right=NULL;
+			}
+		}
+		free(ptr);
+		return tree;
+	}
+	else if (ptr->left==NULL&&ptr->right!=NULL) {
+		if(pre_ptr->left==ptr) {
+			pre_ptr->left=ptr->right;
+		}
+		else {
+			pre_ptr->right=ptr->right;
+		}
+		free(ptr);
+	}
+	else if (ptr->left!=NULL&&ptr->right==NULL) {
+		if(pre_ptr->left==ptr) {
+			pre_ptr->left=ptr->left;
+		}
+		else {
+			pre_ptr->right=ptr->left;
+		}
+		free(ptr);
+	}
+	else {
+		struct node* temp=(struct node*)malloc(sizeof(struct node));
+		temp->data=INT_MAX;
+		temp=inorderSuccessor(ptr,ptr,temp);
+		ptr->data=temp->data;
+		curr=tree;
+		while(curr!=NULL) {
+			if(curr->left==temp) {
+				curr->left=NULL;
+				break;
+			}
+			else if(curr->right==temp) {
+				curr->right=NULL;
+			}
+		}
+		free(temp);
+
+	}
+	printf("\nNode deleted!");
+	return tree;
 }
 
 
@@ -255,7 +346,7 @@ int Height(struct node *tree)
 }
 
 
-void mirrorImage(struct node *tree)
+struct node* mirrorImage(struct node *tree)
 {
 	struct node *ptr;
 	if(tree!=NULL)
@@ -266,15 +357,33 @@ void mirrorImage(struct node *tree)
 		ptr->left = ptr->right;
 		tree->right = ptr;
 	}
+	return tree;
 }
 
-
-void deleteTree(struct node *tree)
+struct node* deleteTree(struct node *tree)
 {
 	if(tree!=NULL)
 	{
 		deleteTree(tree->left);
 		deleteTree(tree->right);
+		printf("\nDeleting Node: %d",tree->data);
 		free(tree);
+		tree=NULL;
+	}
+	return tree;
+
+}
+
+struct node* inorderSuccessor(struct node* root,struct node* current,struct node* successor) {
+	if(current!=NULL) {
+		successor=inorderSuccessor(root,current->left,successor);
+		if(successor->data>current->data&&current->data>root->data) {
+			successor=current;
+		}
+		successor=inorderSuccessor(root,current->right,successor);
+		return successor;
+	}
+	else {
+		return successor;
 	}
 }
