@@ -40,6 +40,9 @@ int main() {
 	cout << "\n\nThe set elements are : ";
 	for (p = x.begin(); p != x.end(); p++)
 	cout << *p << "\t";
+cout << "\nElement found: \t";
+p=find(x.begin(),x.end(),7);
+cout << *p << "\t";
 
 
 vector<int> ar;
