@@ -9,7 +9,7 @@ void all_topological_sorts(int **graph, int v, bool* visited, vector<int>& resul
 
 
 int main() {
-		int n=0;
+	int n=0;
 	cout << "Enter the number of vertices: ";
 	cin >> n;
 	int** graph;
