@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #define size 100
 
 int n;
