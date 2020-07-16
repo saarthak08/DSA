@@ -21,7 +21,7 @@ int main() {
 	root=new Node;
 	cout << "Enter the root node: "<< endl;
 	cin >> root->data;
-	prefill_tree(root);
+	build_tree(root);
 	cout << "\n\n\nTree (Pre-order Traversal) :" << endl;
 	print_tree(root);
 	cout << "\n\nHeight of Tree: " << endl << height_of_tree(root) << endl;
