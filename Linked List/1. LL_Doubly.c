@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <malloc.h>
 
 
@@ -74,7 +73,6 @@ int main()
 			break;
 		}
 	}while(option != 12);
-	getch();
 	return 0;
 }
 

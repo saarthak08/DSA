@@ -40,21 +40,21 @@ int main() {
 	cout << "\n\nThe set elements are : ";
 	for (p = x.begin(); p != x.end(); p++)
 	cout << *p << "\t";
-cout << "\nElement found: \t";
-p=find(x.begin(),x.end(),7);
-cout << *p << "\t";
+	cout << "\nElement found: \t";
+	p=find(x.begin(),x.end(),7);
+	cout << *p << "\t";
 
 
-vector<int> ar;
-ar.push_back(10);
-ar.push_back(11);
-ar.push_back(12);
-vector<int>::iterator ptr;
-cout << "\n\nThe vector elements are : ";
-for (ptr = ar.begin(); ptr != ar.end(); ptr++)
-cout << *ptr << "\t";
+	vector<int> ar;
+	ar.push_back(10);
+	ar.push_back(11);
+	ar.push_back(12);
+	vector<int>::iterator ptr;
+	cout << "\n\nThe vector elements are : ";
+	for (ptr = ar.begin(); ptr != ar.end(); ptr++)
+	cout << *ptr << "\t";
 
-return 0;
+	return 0;
 
 
 }
