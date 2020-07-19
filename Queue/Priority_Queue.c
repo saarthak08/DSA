@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <malloc.h>
-#include <conio.h>
+#include <stdlib.h>
 
 //Min Priority Queue
 
@@ -77,7 +76,7 @@ struct node *delete(struct node *start)
 	if(start == NULL)
 	{
 		printf("\n UNDERFLOW" );
-		return;
+		exit(0);
 	}
 	else
 	{

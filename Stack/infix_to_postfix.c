@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <ctype.h>
 #include <string.h>
 #define MAX 100
@@ -23,7 +22,6 @@ int main()
 	InfixtoPostfix(infix, postfix);
 	printf("\n The corresponding postfix expression is : ");
 	puts(postfix);
-	getch();
 	return 0;
 }
 

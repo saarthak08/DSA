@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 int stk[100];
 int top=-1;
@@ -24,7 +23,6 @@ int main()
 	printf("\n The reversed array is : ");
 	for(i=0;i<n;i++)
 		printf("\n %d", arr[i]);
-	getch();
 	return 0;
 }
 

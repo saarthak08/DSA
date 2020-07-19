@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 #define MAX 10 // Altering this value changes size of stack created
 
 

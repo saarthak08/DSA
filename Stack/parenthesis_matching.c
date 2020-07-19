@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <string.h>
 #define MAX 10
 
@@ -19,11 +18,13 @@ int main()
 	
 	for(i=0;i<strlen(exp);i++)
 	{
-		if(exp[i]=='(' || exp[i]=='{' || exp[i]=='[')
+		if(exp[i]=='(' || exp[i]=='{' || exp[i]=='[') {
 			push(exp[i]);
-		if(exp[i]==')' || exp[i]=='}' || exp[i]==']')
-			if(top == -1)
+		}
+		if(exp[i]==')' || exp[i]=='}' || exp[i]==']') {
+			if(top == -1) {
 				flag=0;
+			}
 			else
 			{
 				temp=pop();
@@ -34,13 +35,17 @@ int main()
 				if(exp[i]==']' && (temp=='(' || temp=='{'))
 					flag=0;
 			}
+		}
 	}	
-	if(top>=0)
+	if(top>=0) {
 		flag=0;
-	if(flag==1)
+	}
+	if(flag==1) {
 		printf("\n Valid expression");
-	else
+	}
+	else {
 		printf("\n Invalid expression");
+	}
 	return 0;
 }
 
@@ -59,8 +64,11 @@ void push(char c)
 
 char pop()
 {
-	if(top == -1)
+	if(top == -1) {
 		printf("\n Stack Underflow");
-	else
+		return 0;
+	}
+	else {
 		return(stk[top--]);
+	}
 }

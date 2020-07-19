@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
-#include <malloc.h>
+#include <stdlib.h>
 
 
 struct node
@@ -17,7 +16,7 @@ struct queue
 };
 
 
-struct queue *q = (struct queue*)malloc(sizeof(struct queue));
+struct queue *q;
 void create_queue(struct queue *);
 struct queue *insert(struct queue *,int);
 struct queue *delete_element(struct queue *);
@@ -26,6 +25,7 @@ int First_element(struct queue *);
 
 int main()
 {
+	q= (struct queue*)malloc(sizeof(struct queue));
 	int val, option;
 	create_queue(q);
 	do
@@ -60,7 +60,6 @@ int main()
 			break;	
 		}
 	}while(option != 5);
-	getch();
 	return 0;
 }
 

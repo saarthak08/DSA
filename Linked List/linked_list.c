@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
-#include <malloc.h>
 
 
 struct node
@@ -77,7 +75,6 @@ int main(int argc, char *argv[]) {
 		break;
 	}
 	}while(option !=13);
-	getch();
 	return 0;
 }
 

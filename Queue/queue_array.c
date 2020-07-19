@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #define MAX 10 // Changing this value will change length of array
 
 int queue[MAX];
@@ -46,7 +45,6 @@ int main()
 		
 		}
 	}while(option != 5);
-	getch();
 	return 0;
 }
 

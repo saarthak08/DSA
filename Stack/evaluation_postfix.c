@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+#include<stdlib.h>
 #include <ctype.h>
 #define MAX 100
 
@@ -19,7 +19,6 @@ int main()
 	gets(exp);
 	val = evaluatePostfixExp(exp);
 	printf("\n Value of the postfix expression = %.2f", val);
-	getch();
 	return 0;
 }
 

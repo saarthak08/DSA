@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
-#include <malloc.h>
+#include <stdlib.h>
 
 
 struct node
@@ -60,7 +59,6 @@ int main()
 				break;
 		}
 	}while(option !=9);
-	getch();
 	return 0;
 }
 
