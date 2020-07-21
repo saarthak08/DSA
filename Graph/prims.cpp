@@ -4,6 +4,13 @@
 using namespace std;
 
 
+// Time Complexity is E*(logV);
+
+/*
+Approach: Same as Dijkstra's Algorithm. 
+At each vertex, all the edges are considered and the one which has minimum weight and doesn't form a cycle is choosen.
+*/
+
 void print_graph(int** graph, int v);
 int** prims(int** graph, int v);
 bool detect_cycle(int** graph, int v, int index, bool *visited, int **visited_edges);
@@ -26,6 +33,7 @@ int main() {
 	cout << "Enter the edges: " <<endl;
 	int x;
 	int k=0;
+	//Graph Initialisation
 	while(k!=e) {
 		cout << "\n\n******* MENU *******" <<endl;
 		cout <<"Press \'1\' to enter edge." <<endl;
@@ -77,7 +85,7 @@ void print_graph(int** graph, int v) {
 
 
 int** prims(int** graph, int v) {
-
+	//Initialised MST
 	int **tree=new int*[v];
 	for(int i=0;i<v;i++) {
 		tree[i]=new int[v];
@@ -87,13 +95,18 @@ int** prims(int** graph, int v) {
 			tree[i][j]=0;
 		}
 	}
+	//For each vertex
 	for(int i=0;i<v;i++) {
+		//Initialised MIN INDEX & MIN.
 		int min_index=0;
 		int min=INT_MAX;
+		//For each edge from vertex i.
 		for(int j=0;j<v;j++) {
 			if(graph[i][j]!=0) {
+				//Edge is included in MST.
 				tree[i][j]=graph[i][j];
 				tree[j][i]=graph[i][j];
+				//Initialised visited vertex array && visited edges array.
 				bool *visited=new bool[v];
 				int** visited_edges=new int*[v];
 				for(int x=0;x<v;x++) {
@@ -105,36 +118,46 @@ int** prims(int** graph, int v) {
 						visited_edges[x][y]=0;
 					}
 				}
+				//Detect Cycle
 				if(!detect_cycle(tree,v,i,visited,visited_edges)) {
+					//If there is no cycle, compare with min-weight edge.
 					if(min>graph[i][j]) {
 						min=graph[i][j];
 						min_index=j; 
 					}
 				}
+				//Edge is discarded since minimum weight edge has to been included.
 				tree[i][j]=0;
 				tree[j][i]=0;
 			}
 		}
+		//Minimum weight edge included.
 		tree[i][min_index]=min;
 		tree[min_index][i]=min;
 	}
 	return tree;
 }
 
+//Modified DFS
 bool detect_cycle(int** graph, int v, int index, bool *visited, int **visited_edges) {
+	//mark vertex as visited.
 	visited[index]=true;
+	//DFS
 	for(int i=0;i<v;i++) {
 		if(graph[index][i]!=0&&!visited[i]) {
 			visited_edges[index][i]=1;
 			visited_edges[i][index]=1;
+			//If cycle is detected, return true immediately.
 			if(detect_cycle(graph,v,i,visited,visited_edges)) {
 				return true; 
 			}
 		}
 	}
+	//check whetether edge is not in visited edges array but the index between the edges are already visited or not.
 	for(int i=0;i<v;i++) {
 		if(graph[index][i]!=0&&visited[i]&&visited_edges[i][index]!=1&&visited_edges[index][i]!=1) {
 			cout << "\nCycle Detected: "<< index << "\t" << i << endl;
+			//If yes, return true else return false.
 			return true;
 		}
 	}

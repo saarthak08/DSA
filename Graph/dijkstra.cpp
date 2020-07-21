@@ -4,6 +4,35 @@
 using namespace std;
 
 
+/* 
+   Dijkstra doesn't work with negative edges.
+	
+   The difference in Dijkstra and Bellman Ford is that Bellman ford relaxes each edge for each vertex & that's why its complexity goes to O(EV)
+   but in Dijkstra, we choose the min weight vertex and enqeue it to the queue & then relax all its neighbours.
+
+
+	Time Complexity: This algorithm: O(V^2) using matrix. O(E*log(V)) using Adjacency List & Binary Heap.
+
+	Approach (Matrix) :
+	1) Make a distance array & assign infinite values to all nodes and 0 to source node.
+	2) Enqueue the source node to the queue.
+	3) Dequeue a node from the queue, then check all its edges and relax them and then choose the vertex with minimum distance value.
+	4) Enqueue the node with minimum distance to the queue.
+	5) Repeat 2-4 until queue is empty.
+
+
+
+
+	Approach (Adjacency List & Heap) :
+	The idea is to traverse all vertices of graph using BFS and use a Min Heap to store the vertices not yet included in SPT (or the vertices for which shortest distance is not finalized yet).  Min Heap is used as a priority queue to get the minimum distance vertex from set of not yet included vertices. Time complexity of operations like extract-min and decrease-key value is O(LogV) for Min Heap.
+
+	Following are the detailed steps.
+	1) Create a Min Heap of size V where V is the number of vertices in the given graph. Every node of min heap contains vertex number and distance value of the vertex.
+	2) Initialize Min Heap with source vertex as root (the distance value assigned to source vertex is 0). The distance value assigned to all other vertices is INF (infinite).
+	3) While Min Heap is not empty, do following
+		…..a) Extract the vertex with minimum distance value node from Min Heap. Let the extracted vertex be u.
+		…..b) For every adjacent vertex v of u, check if v is in Min Heap. If v is in Min Heap and distance value is more than weight of u-v plus distance value of u, then update the distance value of v.
+*/
 class queue {
 	private:
 		int* arr;
@@ -72,6 +101,7 @@ int main() {
 	}
 	cout << "Enter the edges: " <<endl;
 	int x;
+	//Graph Initialisation
 	while(true) {
 		cout << "\n\n******* MENU *******" <<endl;
 		cout <<"Press \'1\' to enter edge." <<endl;
@@ -119,19 +149,25 @@ int main() {
 		}
 	}
 
+	//Distance and path arrays initialisation.
 	int *distance=new int[n];
 	int *path=new int[n];
 	for(int i=0;i<n;i++) {
 		distance[i]=-1;
 		path[i]=0;
 	}
+
+	//Distance of source set to 0.
 	distance[source]=0;
+
+	//Dijkstra
 	bool res=dijkstra(graph,n,source,destination,distance,path);
 	if(!res) {
 		cout << "\n\nNo path between source and destination." <<endl;
 		exit(0);
 	}
 	else {
+		//Print Paths.
 		cout << "\n\nDistance from source to destination: " << distance[destination] << endl;
 		cout << "Path from source to destination: " << endl;
 		for(int i=destination;path[i]!=source;i=path[i]) {
@@ -160,15 +196,20 @@ void print_graph(int** graph, int v) {
 
 bool dijkstra(int** graph,int n,int source,int destination, int* distance, int* path) {
 	queue q(n);
+	// Enqueue source node.
 	q.enqueue(source);
 	while(!q.is_empty()) {
+		//Dequeue a node.
 		int x=q.dequeue();
+		//If its destination return true.
 		if(x==destination) {
 			return true;
 		}
 		int min=INT_MAX;
 		int min_index=0;
 		bool flag=false;
+
+		//Relax the edges & vertices and choose the vertex with minimum distance value.
 		for(int i=0;i<n;i++) {	
 			if(graph[x][i]!=0&&distance[i]==-1) {
 				flag=true;
@@ -180,9 +221,11 @@ bool dijkstra(int** graph,int n,int source,int destination, int* distance, int* 
 				}
 			}
 		}
+		//Enqueue the node if its found.
 		if(flag) {
 			q.enqueue(min_index);
 		}
 	}
+	//Return false if path not found.
 	return false;
 }

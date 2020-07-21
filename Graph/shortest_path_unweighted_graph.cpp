@@ -2,7 +2,8 @@
 
 using namespace std;
 
-
+// Simple BFS gives shortest path in unweighted graph. 
+// Time Complexity: O(E+V).
 
 class queue {
 	private:

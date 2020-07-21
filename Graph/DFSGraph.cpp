@@ -1,6 +1,11 @@
 #include<iostream>
 #include<stdlib.h>
 
+
+//Time Complexity: O(V+E)-LinkedList, O(V^2)-> Matrix
+
+// Space Complexity: O(V)=>Worst Case
+
 using namespace std;
 
 int** initializeGraph(int **Graph,int vertices,bool *visited);

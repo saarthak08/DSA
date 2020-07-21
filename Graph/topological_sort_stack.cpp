@@ -2,12 +2,22 @@
 
 using namespace std;
 
+
+// Time Complexity: O(V+E)-LinkedList, O(V^2)-> Matrix
+
+// Space Complexity: O(V)=>Worst Case
+
+//Approach: Apply DFS and at last of the DFS function, push the number to the stack.
+
+
 int *stack;
 int capacity=0;
 int size=0;
 void print_graph(int** graph, int v);
 void dfs(int** graph, int v, int x, bool* visited);
 
+
+//Stack Pop
 int pop() {
 	if(size==0) {
 		cout << "Underflow!" << endl;
@@ -19,6 +29,8 @@ int pop() {
 	return temp;
 }
 
+
+//Stack Push
 void push(int n) {
 	if(size==capacity) {
 		cout << "Overflow!" <<endl;
@@ -37,10 +49,13 @@ int main() {
 	for(int i=0;i<n;i++) {
 		graph[i]=new int[n];
 	}
+	// Initialised Stack
 	stack=new int[n];
 	capacity=n;
 	cout << "Enter the edges: " <<endl;
 	int x;
+
+	//Initialised Graph
 	while(true) {
 		cout << "\n\n******* MENU *******" <<endl;
 		cout <<"Press \'1\' to enter edge." <<endl;
@@ -71,13 +86,17 @@ int main() {
 		}
 	}
 	print_graph(graph,n);
+
+	//Visited Array for each vertex
 	bool* visited=new bool[n];
 	for(int i=0;i<n;i++) {
 		if(!visited[i]) {
+			//Applying DFS to all vertices (Helpful if graph is disconnected).
 			dfs(graph,n,i,visited);
 		}
 	}
 	cout << "\n\nTopological Sort: " << endl;
+	//Printing the Stack.
 	while(size>0) {
 		cout << pop() << "\t";
 	}
@@ -103,5 +122,6 @@ void dfs(int** graph, int v, int x, bool* visited) {
 			dfs(graph,v,i,visited);
 		}
 	}
+	// Pushed the vertex to the stack
 	push(x);
 }

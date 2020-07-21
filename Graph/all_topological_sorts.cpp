@@ -3,10 +3,16 @@
 
 using namespace std;
 
+
 void print_graph(int** graph, int v);
 void all_topological_sorts(int **graph, int v, bool* visited, vector<int>& result, int *indegree);
 
 
+/*
+Initialize all vertices as unvisited.
+Now choose vertex which is unvisited and has zero indegree and decrease indegree of all those vertices by 1 (corresponding to removing edges) now add this vertex to result and call the recursive function again and backtrack.
+After returning from function reset values of visited, result and indegree for enumeration of other possibilities.
+*/
 
 int main() {
 	int n=0;
@@ -17,6 +23,7 @@ int main() {
 	for(int i=0;i<n;i++) {
 		graph[i]=new int[n];
 	}
+	//Graph Initialization
 	cout << "Enter the edges: " <<endl;
 	int x;
 	while(true) {
@@ -49,8 +56,11 @@ int main() {
 		}
 	}
 	print_graph(graph,n);
+	// Visited Boolean Array
 	bool* visited=new bool[n];
+	// Indegree Array
 	int* indegree=new int[n];
+	//Calculating indegree
 	for(int i=0;i<n;i++) {
 		indegree[i]=0;
 	}
@@ -80,23 +90,33 @@ void print_graph(int** graph, int v) {
 
 void all_topological_sorts(int **graph, int v, bool* visited, vector<int>& result, int *indegree) {
 	bool flag=false;
+	//For each vertex of the graph
 	for(int i=0;i<v;i++) {
+		//If the vertex is not visited and has 0 indegree.
 		if(!visited[i]&&indegree[i]==0) {
+			//Pushed to result.
 			result.push_back(i);
+			//Lowering the indegree of neighbouring nodes of current node by 1.
 			for(int j=0;j<v;j++) {
 				if(graph[i][j]==1) {
 					indegree[j]-=1;
 				}
 			}
+			//Marking current node as visited.
 			visited[i]=true;
+			//Recursive call
 			all_topological_sorts(graph,v,visited,result,indegree);
+			//Removed from result.
 			result.erase(result.end() - 1); 
+			//Marking current node as unvisited.
 			visited[i]=false;
+			//Increasing the indegree of neighbouring nodes of current node by 1.
 			for(int j=0;j<v;j++) {
 				if(graph[i][j]==1) {
 					indegree[j]+=1;
 				}
 			}
+			//Marking the flag true to print the order.
 			flag=true;
 		}
 	}

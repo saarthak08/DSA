@@ -1,5 +1,10 @@
 import java.util.*;
 
+
+//Time Complexity: O(V+E)-LinkedList, O(V^2)-> Matrix
+
+// Space Complexity: O(V)=>Worst Case
+
 public class DFSGraph{
 
     private static Scanner sc=new Scanner(System.in);

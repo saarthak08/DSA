@@ -2,6 +2,13 @@
 #include<stdlib.h>
 #define MAX 50
 
+//Time Complexity: O(V+E)-LinkedList, O(V^2)-> Matrix
+
+// Space Complexity: Breadth of Queue: O(V)=>Worst Case
+
+
+
+
 using namespace std;
 
 int queue[MAX];
