@@ -5,6 +5,11 @@ using namespace std;
 
 void selection_sort(int a[],int n);
 
+/*
+Time Complexity: O(n^2)
+Approach: Minimum element is selected from the array each time & placed at the right index.
+*/
+
 int main() {
 	int n;
 	cout << "Enter the number of elements in the array: ";

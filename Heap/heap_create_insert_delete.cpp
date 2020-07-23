@@ -3,6 +3,43 @@
 
 using namespace std;
 
+//Heaps are complete binary tree which is of two types: Max Heap and Min Heap.
+/*
+Max-Heap: In a Max-Heap the key present at the root node must be greatest among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.
+Min-Heap: In a Min-Heap the key present at the root node must be minimum among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.
+
+
+Build Heap: Time Complexity: O(n)
+Approach: Take input in an array & then, heapify (percolateDown) all elements by moving from bottom to top except leaf nodes.
+
+Heap Sort: Time Complexity: O(nLogn)
+Approach: Build a heap and then, remove the first element of the heap by placing it at the last of the array and then reduce the size of heap & heapify (percolateDown).
+
+DeleteElement: Time Complexity: O(logN)
+Approach: Replace the element to be deleted with the last element and then reduce the size of array & heapify (percolateDown) from the index where the element was deleted/replaced.
+
+Insert Element: Time Complexity: O(logN)
+Approach: Insert the element at the last and then heapify (percolate up).
+
+Percolate Down: Time Complexity: O(logN)
+Approach: For current index, find left child and right child, then compare which child is bigger, if the bigger child is bigger with parent, then swap child and parent values.
+		  Repeat the same process for all the index upto the down by updating index recursively.
+Percolate Up is just opposite of it. Its time complexity is still O(logN) but it takes more time as more nodes are present at bottom in comparison to top.
+
+
+Note: Why does buildHeap takes O(n) time complexity?
+Ans: The number of operations required for siftDown and siftUp is proportional to the distance the node may have to move. For siftDown, it is the distance to the bottom of the tree, so siftDown is expensive for nodes at the top of the tree. 
+With siftUp, the work is proportional to the distance to the top of the tree, so siftUp is expensive for nodes at the bottom of the tree. Although both operations are O(log n) in the worst case, in a heap, only one node is at the top whereas half the nodes lie in the bottom layer. 
+So it shouldn't be too surprising that if we have to apply an operation to every node, we would prefer siftDown over siftUp.
+The buildHeap function takes an array of unsorted items and moves them until they all satisfy the heap property, thereby producing a valid heap. There are two approaches one might take for buildHeap using the siftUp and siftDown operations we've described.
+Start at the top of the heap (the beginning of the array) and call siftUp on each item. At each step, the previously sifted items (the items before the current item in the array) form a valid heap, and sifting the next item up places it into a valid position in the heap. 
+After sifting up each node, all items satisfy the heap property.
+Or, go in the opposite direction: start at the end of the array and move backwards towards the front. At each iteration, you sift an item down until it is in the correct location.
+
+
+
+*/
+
 typedef struct heap {
 	int *array;
 	int capacity;

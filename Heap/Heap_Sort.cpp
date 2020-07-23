@@ -1,5 +1,10 @@
 // C++ program for implementation of Heap Sort
 
+
+// Time Complexity: O(n*log(n)).
+/* Approach: 
+Build a heap and then, remove the first element of the heap by placing it at the last of the array and then reduce the size of heap & heapify (percolateDown).
+*/
 #include<iostream>
 
 using namespace std;

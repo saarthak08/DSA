@@ -4,6 +4,12 @@
 void bubble_sort(int a[],int);
 
 
+/*
+Time Complexity: O(N^2) - All cases.
+But we can improve it by placing a flag inside the swapping condition & setting it inside it.
+If the flag is set, then complexity can be reduced to O(n) if array is already sorted.
+*/
+
 int main()
 {
 	int arr[size], i, n;

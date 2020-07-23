@@ -3,6 +3,15 @@
 using namespace std;
 
 
+/*
+Time Complexity: O(N^2) - All cases.
+But we can improve it by placing a flag inside the swapping condition & setting it inside it.
+If the flag is set, then complexity can be reduced to O(n) if array is already sorted.
+
+Approach: Each value is compared to its neighbour & if value before is greater than value after, then they are swapped.
+This step is repeated n times and after each iteration, the greater values get placed at the last of the array.
+*/
+
 int main() {
 	int n;
 	cout << "Enter the number of elements in the array: ";
