@@ -1,6 +1,19 @@
 #include<iostream>
 
 
+/*
+
+Push all the characters in ch[] mapped to corresponding frequncy freq[] in priority queue.
+To create Huffman Tree, pop two nodes from priority queue.
+Assign two popped node from priority queue as left and right child of new node.
+Push the new node formed in priority queue.
+Repeat all above steps untill size of priority queue becomes 1.
+Traverse the only node in the priority queue for each character in ch[] and store the Huffman Code.
+To print all the stored Huffman Code for every character in ch[].
+
+
+*/
+
 using namespace std;
 
 typedef struct node {
