@@ -4,8 +4,8 @@ import java.io.*;
 
 public class PerimetricChapter1 {
 
-    private static File inputFile=new File("sample-input.txt");
-    private static File outputFile=new File("sample-output.txt");
+    private static File inputFile=new File("input.txt");
+    private static File outputFile=new File("output.txt");
     private static BufferedReader reader;
     private static BufferedWriter writer;
     private static long testCase=1;
