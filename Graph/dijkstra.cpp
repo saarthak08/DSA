@@ -153,7 +153,7 @@ int main() {
 	int *distance=new int[n];
 	int *path=new int[n];
 	for(int i=0;i<n;i++) {
-		distance[i]=-1;
+		distance[i]=INT_MAX;
 		path[i]=0;
 	}
 
@@ -196,6 +196,7 @@ void print_graph(int** graph, int v) {
 
 bool dijkstra(int** graph,int n,int source,int destination, int* distance, int* path) {
 	queue q(n);
+	bool visited[n];
 	// Enqueue source node.
 	q.enqueue(source);
 	while(!q.is_empty()) {
@@ -211,18 +212,21 @@ bool dijkstra(int** graph,int n,int source,int destination, int* distance, int* 
 
 		//Relax the edges & vertices and choose the vertex with minimum distance value.
 		for(int i=0;i<n;i++) {	
-			if(graph[x][i]!=0&&distance[i]==-1) {
+			if(graph[x][i]!=0&&!visited[i]) {
 				flag=true;
-				distance[i]=distance[x]+graph[x][i];
-				path[i]=x;
-				if(graph[x][i]<min) {
-					min=graph[x][i];
-					min_index=i;
+				if(distance[i]>distance[x]+graph[x][i]) {
+					distance[i]=distance[x]+graph[x][i];
+					path[i]=x;
+					if(graph[x][i]<min) {
+						min=graph[x][i];
+						min_index=i;
+					}
 				}
 			}
 		}
 		//Enqueue the node if its found.
 		if(flag) {
+			visited[min_index]=true;
 			q.enqueue(min_index);
 		}
 	}
