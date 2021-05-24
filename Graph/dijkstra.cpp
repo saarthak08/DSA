@@ -127,6 +127,7 @@ int main() {
 				continue;
 			}
 			graph[u][v]=w;
+			graph[v][u]=w;
 		}
 		else {
 			cout << "Invalid Input. Try Again!" <<endl;
@@ -207,28 +208,34 @@ bool dijkstra(int** graph,int n,int source,int destination, int* distance, int* 
 			return true;
 		}
 		int min=INT_MAX;
-		int min_index=0;
+		int min_index=-1;
 		bool flag=false;
 
 		//Relax the edges & vertices and choose the vertex with minimum distance value.
 		for(int i=0;i<n;i++) {	
 			if(graph[x][i]!=0&&!visited[i]) {
-				flag=true;
 				if(distance[i]>distance[x]+graph[x][i]) {
 					distance[i]=distance[x]+graph[x][i];
 					path[i]=x;
-					if(graph[x][i]<min) {
-						min=graph[x][i];
-						min_index=i;
-					}
 				}
 			}
 		}
+
+
+		for(int i=0;i<n;i++) {
+			if(min>distance[i]&&!visited[i]) {
+				min_index=i;
+				min=distance[i];
+			}
+		}
+
+
 		//Enqueue the node if its found.
-		if(flag) {
+		if(min_index!=-1) {
 			visited[min_index]=true;
 			q.enqueue(min_index);
 		}
+		
 	}
 	//Return false if path not found.
 	return false;
