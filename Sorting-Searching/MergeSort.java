@@ -1,5 +1,11 @@
 import java.util.*;
 
+/*
+ * The idea behind merge sort is divide the array into the parts recursively and then sort both the divided arrays
+ * and then merge the sorted arrays. So, we will divide the arrays recursively to a point that only two elements will remain.
+ * Now we will sort them in constant time. Now, we will increase join two already two elements array likewise.
+ * T(n) = 2T(n/2) + n;
+ */
 public class MergeSort {
     private static Scanner sc = new Scanner(System.in);
 

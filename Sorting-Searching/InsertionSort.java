@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/*
+ * The basic approach in Insertion Sort is that we start from second element and check that all the elements before
+ * it are smaller than it. If not, we will insert the current element before the greater element to ensure every element before
+ * current element is smaller. 
+ * The only catch here is that if an element is smaller than the current element we don't need to go forward and check the 
+ * elements before it since they will be already smaller than the element so we can break the loop there itself.
+ * That's why insertion sort can give O(n) complexity.
+ *
+ */
 public class InsertionSort {
     private static Scanner sc = new Scanner(System.in);
 

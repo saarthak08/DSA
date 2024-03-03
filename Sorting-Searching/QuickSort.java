@@ -1,5 +1,20 @@
 import java.util.Scanner;
 
+/*
+ * The idea behind Quick Sort is that we have to find an element which is called pivot and ensure that all the elements
+ * before the pivot are smaller than it and all the elements after it are greater than it. This is done recursively.
+ * So, what we do is we will have a pivotal element. Pivotal element and pivot are two separate things.
+ * Basic function is a parition function which finds a pivot and then we divide the array against pivot and then again find the
+ * pivot recursively.
+ * So in the partition function, we will start with a pivotal element 
+ * and take the first element of array as pivotal element. Now, we will go from
+ * right to left checking whether any element is greater than pivot and same way we will go from left to right checking whether
+ * any element is less than pivot. If the left element index is less than right index, then we will swap those elements.
+ * And then again we will continue going from right to left and simultaneously left to right. Now, we will again find 
+ * two right and left indices. Now, in this case if left index is less than right index, swap the elements if not, then we 
+ * can be ensured that the all the right elements are bigger and all the left elements are smaller. Now we will swap the right index
+ * with the pivotal element and send the index back from the paritition function. This will be the index of the pivot.
+ */
 public class QuickSort {
     private static Scanner sc = new Scanner(System.in);
 

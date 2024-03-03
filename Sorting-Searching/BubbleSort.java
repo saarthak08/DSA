@@ -1,5 +1,10 @@
 import java.util.*;
 
+/*
+ * The basic approach of bubble sort is to compare the adjacent elements and if the element before is greater than the element 
+ * after, then swap the elements. Again move on to the next pair likewise. This will ensure that the largest element reaches 
+ * the last element.
+ */
 public class BubbleSort {
     private static Scanner sc = new Scanner(System.in);
 
