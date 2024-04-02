@@ -7,7 +7,14 @@ using namespace std;
 // Time Complexity is E*(logV);
 
 /*
-Approach: Same as Dijkstra's Algorithm. 
+Check kruskal.cpp for spanning tree definitions.
+
+Prim's algorithm is a minimum spanning tree algorithm that takes a graph as input
+and finds the subset of the edges of that graph which form a tree that includes every vertex and
+has the minimum sum of weights among all the trees that can be formed from the graph
+
+Approach:
+Take any vertex as starting vertex.
 At each vertex, all the edges are considered and the one which has minimum weight and doesn't form a cycle is choosen.
 */
 
