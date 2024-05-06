@@ -9,7 +9,6 @@ using namespace std;
 	For unweighted graph, simple BFS works but for weigted graph Dijkstra is the way to go.
 
 	Approach:
-	- We will create a visited array to mark the node is visited or not. If a node is visited, it's shortest path is already determined.
 	- We will create a distance array for all vertices currently having distance as Integer.MAX_VALUE for all vertices.
 	- This distance array denotes the shortest distance from source node to all the other nodes in the graph.
 	- In starting all the distances are MAX_VALUE i.e. infinite.
@@ -18,9 +17,9 @@ using namespace std;
 	- The priority in queue depends on the distance of the node from the source node i.e. the value of distance array.
 	- Now, we will execute a loop until queue is empty.
 		- We will dequeue a node from the queue. Let's say the dequeued node is q.
-		- We will check all the non visited neighbours of the node. We will find distance to each non visited neighbour. The distance will be value of distance[q] + weight[neighbour-q edge].
+		- We will check all the neighbours of the node. We will find distance to each neighbour. The distance will be value of distance[q] + weight[neighbour-q edge].
 		- If the distance is less than the distance mentioned in the distance array. We have found a shorter path. Hence, we will update the distance array value of that neighbour. This is also called relaxing.
-		- We will enqueue the neighbours for which we found the shorter path and if the neighbour is already in queue, we will update the distance there with shorter distance.
+		- We will enqueue the neighbours for which we found the shorter path.
 	- Now, the distance array will contain the shortest paths from source nodes to all the nodes.
 
    Dijkstra doesn't work with negative edges.
