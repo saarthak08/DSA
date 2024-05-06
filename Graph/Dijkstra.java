@@ -33,7 +33,6 @@ class Dijkstra {
 
 	static void dijkstra(Deque<Integer> graph[], int V, int E, int weight[][]) {
 		int distance[] = new int[V + 1];
-		boolean visited[] = new boolean[V + 1];
 		PriorityQueue<Node> queue = new PriorityQueue<>(V + 1, new NodeComparator());
 		for (int i = 1; i <= V; i++) {
 			distance[i] = Integer.MAX_VALUE;
@@ -45,21 +44,20 @@ class Dijkstra {
 		queue.offer(p);
 		while (!queue.isEmpty()) {
 			Node x = queue.poll();
-			visited[x.index] = true;
 			int u = x.index;
 			Iterator<Integer> itr = graph[u].iterator();
+			System.out.println(x.index);
 			while (itr.hasNext()) {
 				int v = itr.next();
-				if (!visited[v] && weight[u][v] + distance[u] < distance[v]) {
+				if (weight[u][v] + distance[u] < distance[v]) {
 					distance[v] = weight[u][v] + distance[u];
-					queue.removeIf(node -> node.index == v);
 					queue.offer(new Node(v, distance[v]));
 				}
 			}
-
 		}
+		System.out.println("Distance Array: ");
 		for (int i = 1; i < V + 1; i++) {
-			System.out.println(distance[i]);
+			System.out.print(distance[i] + " ");
 		}
 
 	}

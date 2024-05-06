@@ -6,7 +6,7 @@ using namespace std;
 /*
 
 	Dijkstra's Algorithm gives the shortest path in a weighted graph.
-	For unweighted graph, simple BFS works but for unweigted graph Dijkstra is the way to go.
+	For unweighted graph, simple BFS works but for weigted graph Dijkstra is the way to go.
 
 	Approach:
 	- We will create a visited array to mark the node is visited or not. If a node is visited, it's shortest path is already determined.
