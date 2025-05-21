@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 // Time Complexity: O(n*(2^n)).
 // Approach Bit Masking. 
@@ -10,39 +10,35 @@ import java.util.*;
 // Then, the result will be greater than 1.
 // This is called bit setting/masking.
 
-
 public class PowerSet {
 
-	private static Scanner sc=new Scanner(System.in);
+  private static final Scanner sc = new Scanner(System.in);
 
+  public static void main(String[] args) {
+    int n;
+    System.out.println("Enter the number of elements:");
+    n = sc.nextInt();
+    char[] arr = new char[n];
+    System.out.println("Enter the elements: ");
+    //Taking input.
+    for (int i = 0; i < n; i++) {
+      arr[i] = sc.next().charAt(0);
+    }
+    printPowerSet(arr, n);
+  }
 
-
-	public static void main(String[] args) {
-		int n;
-		System.out.println("Enter the number of elements:");
-		n=sc.nextInt();
-		char arr[]=new char[n];
-		System.out.println("Enter the elements: ");
-		//Taking input.
-		for(int i=0;i<n;i++) {
-			arr[i]=sc.next().charAt(0);
-		}
-		printPowerSet(arr,n);
-	}
-
-	private static void printPowerSet(char arr[], int n) {
-		int count=(int)Math.pow(2,n);
-		// For each no in the power set i.e. in for each no: i in 2^n elements.
-		for(int i=0;i<count;i++) {
-			// For each number j.
-			for(int j=0;j<n;j++) {
-				// setting the bits.
-				if((i&(1<<j))>0) {
-					System.out.print(arr[j]);
-				}
-			}
-			System.out.println();
-		}
-	}
-
+  private static void printPowerSet(char[] arr, int n) {
+    int count = (int) Math.pow(2, n);
+    // For each no in the power set i.e. in for each no: i in 2^n elements.
+    for (int i = 0; i < count; i++) {
+      // For each number j.
+      for (int j = 0; j < n; j++) {
+        // setting the bits.
+        if ((i & (1 << j)) > 0) {
+          System.out.print(arr[j]);
+        }
+      }
+      System.out.println();
+    }
+  }
 }

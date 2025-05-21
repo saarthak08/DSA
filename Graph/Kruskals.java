@@ -27,98 +27,98 @@
  */
 
 public class Kruskals {
-	private static Scanner sc = new Scanner(System.in);
-	private static int[] parent;
-	private static int[] rank;
+  private static final Scanner sc = new Scanner(System.in);
+  private static int[] parent;
+  private static int[] rank;
 
-	private static void union(GraphEdge edge) {
-		int v1 = edge.v1-1;
-		int v2 = edge.v2-1;
-		int parentV1 = findParent(v1);
-		int parentV2 = findParent(v2);
-		if(rank[parentV1]>rank[parentV2]) {
-			parent[parentV2] = parentV1;
-		} else if(rank[parentV1]<rank[parentV2]) {
-			parent[parentV1] = parentV2;
-		} else {
-			parent[parentV2] = parentV1;
-			rank[parentV1]+=1;
-		}
-	}
+  private static void union(GraphEdge edge) {
+    int v1 = edge.v1 - 1;
+    int v2 = edge.v2 - 1;
+    int parentV1 = findParent(v1);
+    int parentV2 = findParent(v2);
+    if (rank[parentV1] > rank[parentV2]) {
+      parent[parentV2] = parentV1;
+    } else if (rank[parentV1] < rank[parentV2]) {
+      parent[parentV1] = parentV2;
+    } else {
+      parent[parentV2] = parentV1;
+      rank[parentV1] += 1;
+    }
+  }
 
-	private static int findParent(int node) {
-		if(parent[node]==node) {
-			return node;
-		}
-		int parentNode = findParent(parent[node]);
-		parent[node] = parentNode;
-		return parentNode;
-	}
+  private static int findParent(int node) {
+    if (parent[node] == node) {
+      return node;
+    }
+    int parentNode = findParent(parent[node]);
+    parent[node] = parentNode;
+    return parentNode;
+  }
 
-	public static void main(String[] args) {
-		System.out.println("Enter the number of vertices: ");
-		int v = sc.nextInt();
-		System.out.println("Enter the number of edges: ");
-		int e = sc.nextInt();
-		parent = new int[v];
-		for(int i=0; i<v; i++) {
-			parent[i] = i;
-		}
-		rank = new int[v];
+  public static void main(String[] args) {
+    System.out.println("Enter the number of vertices: ");
+    int v = sc.nextInt();
+    System.out.println("Enter the number of edges: ");
+    int e = sc.nextInt();
+    parent = new int[v];
+    for (int i = 0; i < v; i++) {
+      parent[i] = i;
+    }
+    rank = new int[v];
 
-		PriorityQueue<GraphEdge> queue = new PriorityQueue<>();
+    PriorityQueue<GraphEdge> queue = new PriorityQueue<>();
 
-		for (int i = 0; i < e; i++) {
-			System.out.println("Enter details of the edge " + (i + 1));
-			System.out.println("Enter the first vertex of the edge: ");
-			GraphEdge edge = new GraphEdge();
-			edge.v1 = sc.nextInt();
-			System.out.println("Enter the second vertex of the edge: ");
-			edge.v2 = sc.nextInt();
-			System.out.println("Enter the weight of the edge: ");
-			edge.w = sc.nextInt();
-			queue.offer(edge);
-		}
+    for (int i = 0; i < e; i++) {
+      System.out.println("Enter details of the edge " + (i + 1));
+      System.out.println("Enter the first vertex of the edge: ");
+      GraphEdge edge = new GraphEdge();
+      edge.v1 = sc.nextInt();
+      System.out.println("Enter the second vertex of the edge: ");
+      edge.v2 = sc.nextInt();
+      System.out.println("Enter the weight of the edge: ");
+      edge.w = sc.nextInt();
+      queue.offer(edge);
+    }
 
-		ArrayList<GraphEdge> mst = new ArrayList<>();
+    ArrayList<GraphEdge> mst = new ArrayList<>();
 
-		while (mst.size() != v - 1 && !queue.isEmpty()) {
-			GraphEdge edge = queue.poll();
-			int parentV1 = findParent(edge.v1-1);
-			int parentV2 = findParent(edge.v2-1);
-			if(parentV1!=parentV2) {
-				union(edge);
-				mst.add(edge);
-			}
-		}
+    while (mst.size() != v - 1 && !queue.isEmpty()) {
+      GraphEdge edge = queue.poll();
+      int parentV1 = findParent(edge.v1 - 1);
+      int parentV2 = findParent(edge.v2 - 1);
+      if (parentV1 != parentV2) {
+        union(edge);
+        mst.add(edge);
+      }
+    }
 
-		if (mst.size() != v - 1) {
-			System.out.println("Graph is not connected. MST cannot be formed.");
-		} else {
-			System.out.println("MST: ");
-			for (GraphEdge edge : mst) {
-				System.out.println(edge.v1 + " " + edge.v2 + " " + edge.w);
-			}
-		}
-	}
+    if (mst.size() != v - 1) {
+      System.out.println("Graph is not connected. MST cannot be formed.");
+    } else {
+      System.out.println("MST: ");
+      for (GraphEdge edge : mst) {
+        System.out.println(edge.v1 + " " + edge.v2 + " " + edge.w);
+      }
+    }
+  }
 }
 
 class GraphEdge implements Comparable<GraphEdge> {
-	int v1;
-	int v2;
-	int w;
+  int v1;
+  int v2;
+  int w;
 
-	public GraphEdge(int v1, int v2, int w) {
-		this.v1 = v1;
-		this.v2 = v2;
-		this.w = w;
-	}
+  public GraphEdge(int v1, int v2, int w) {
+    this.v1 = v1;
+    this.v2 = v2;
+    this.w = w;
+  }
 
-	public GraphEdge() {
+  public GraphEdge() {
 
-	}
+  }
 
-	public int compareTo(GraphEdge that) {
-		return this.w - that.w;
-	}
+  public int compareTo(GraphEdge that) {
+    return this.w - that.w;
+  }
 }
