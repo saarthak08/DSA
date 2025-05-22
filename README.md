@@ -11,7 +11,7 @@ Data Struture & Algorithms Codes
 -   Two Pointers, Fast and Slow Pointers
 -   Heaps/Priority Queues
 -   Tree - (Create Trees From Traversals), BST, AVL
--   Graph - BFS, DFS, Topological Sorting, Minimum Spanning Tree, Disjoint Set Union, Detect Cycle, Dijsktra
+-   Graph - BFS, DFS, Topological Sorting, Minimum Spanning Tree, Disjoint Set Union, Detect Cycle, Dijkstra
 -   DP
 -   Merge Intervals
 -   Monotonic Stack
