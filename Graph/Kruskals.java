@@ -1,3 +1,4 @@
+import java.util.*;
 /*
  * This code implements Kruskal's algorithm to find the Minimum Spanning Tree (MST) of a weighted, undirected graph.
  *
