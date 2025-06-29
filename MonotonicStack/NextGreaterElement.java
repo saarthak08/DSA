@@ -50,5 +50,4 @@ public class NextGreaterElement {
     }
     System.out.println();
   }
-
 }

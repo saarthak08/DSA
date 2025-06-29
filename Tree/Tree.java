@@ -18,7 +18,7 @@ public class Tree {
     Node head = null;
     while (input != -1) {
       System.out.println(
-          "\nEnter 1 to build the tree\nEnter 2 for pre order traversal\nEnter 3 for post order traversal\nEnter 4 for in order traversal\nEnter 5 for level order traversal\nEnter -1 to exit\n");
+        "\nEnter 1 to build the tree\nEnter 2 for pre order traversal\nEnter 3 for post order traversal\nEnter 4 for in order traversal\nEnter 5 for level order traversal\nEnter -1 to exit\n");
 
       input = sc.nextInt();
       switch (input) {
@@ -57,14 +57,14 @@ public class Tree {
     System.out.println("Enter the value of node to be added: ");
     head.data = sc.nextInt();
     System.out.println("Enter 1 to enter the left child of " + head.data
-        + ".\nEnter any other number to make the left child NULL");
+      + ".\nEnter any other number to make the left child NULL");
     int input = sc.nextInt();
     if (input == 1) {
       head.left = new Node();
       buildTree(head.left);
     }
     System.out.println("Enter 1 to enter the right child of " + head.data
-        + ".\nEnter any other number to make the right child NULL");
+      + ".\nEnter any other number to make the right child NULL");
     input = sc.nextInt();
     if (input == 1) {
       head.right = new Node();

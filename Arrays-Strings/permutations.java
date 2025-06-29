@@ -22,7 +22,7 @@ public class permutations {
     } else {
       for (int i = 0; i < str.length(); i++) {
         String rem = str.substring(0, i) +
-            str.substring(i + 1);
+          str.substring(i + 1);
         //System.out.println("Rem: " +rem);
         //System.out.println("Prefix: " +prefix+str.charAt(i));
 

@@ -18,7 +18,7 @@ public class BST {
     int input = sc.nextInt();
     boolean result = searchInTree(head, input);
     System.out
-        .println(result ? "Given number is present in the tree." : "Given number is not present in the tree.");
+      .println(result ? "Given number is present in the tree." : "Given number is not present in the tree.");
   }
 
   private static TreeNode createTree(int[] arr) {
@@ -52,21 +52,21 @@ public class BST {
   }
 
   private static void preOrderTraversal(TreeNode head) {
-      if (head == null) {
-          return;
-      }
+    if (head == null) {
+      return;
+    }
     System.out.print(head.data + "\t");
     preOrderTraversal(head.left);
     preOrderTraversal(head.right);
   }
 
   private static boolean searchInTree(TreeNode head, int input) {
-      if (head == null) {
-          return false;
-      }
-      if (input == head.data) {
-          return true;
-      }
+    if (head == null) {
+      return false;
+    }
+    if (input == head.data) {
+      return true;
+    }
     if (input >= head.data) {
       return searchInTree(head.right, input);
     } else {

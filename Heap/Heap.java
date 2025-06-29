@@ -15,7 +15,7 @@ class Heap {
     buildHeap(heap);
     while (n != -1) {
       System.out.println(
-          "\nEnter 1 to print heap\nEnter 2 insert element into heap.\nEnter 3 to remove element from heap\nEnter -1 to exit");
+        "\nEnter 1 to print heap\nEnter 2 insert element into heap.\nEnter 3 to remove element from heap\nEnter -1 to exit");
       n = sc.nextInt();
       switch (n) {
         case 1:

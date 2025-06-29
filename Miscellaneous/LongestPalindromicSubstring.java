@@ -36,6 +36,6 @@ public class LongestPalindromicSubstring {
     String str = "forgeeksskeegfor";
 
     System.out.println("Longest Palindromic SubString of " + str + " is "
-        + LongestPalindromicSubString(str, str.length() - 1));
+      + LongestPalindromicSubString(str, str.length() - 1));
   }
 }
