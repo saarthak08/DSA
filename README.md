@@ -1,6 +1,6 @@
 # DSA
 
-Data Struture & Algorithms Codes
+Data Structures & Algorithms Codes
 
 ## Important Concepts
 
