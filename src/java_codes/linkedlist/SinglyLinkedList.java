@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class SinglyLinkedList {
 
   private Node head;
+  @SuppressWarnings("unused")
   private int size;
 
   private static class Node {

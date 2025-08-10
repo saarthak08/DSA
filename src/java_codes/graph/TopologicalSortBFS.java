@@ -31,6 +31,7 @@ public class TopologicalSortBFS {
     System.out.println("Enter the number of edges: ");
     int e = sc.nextInt();
 
+    @SuppressWarnings("unchecked")
     // Adjacency list to represent the graph
     ArrayList<Integer>[] adjList = new ArrayList[v];
     for (int i = 0; i < v; i++) {

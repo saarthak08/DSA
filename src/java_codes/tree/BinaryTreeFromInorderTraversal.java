@@ -44,6 +44,7 @@ public class BinaryTreeFromInorderTraversal {
 
     if (n <= 0) {
       System.out.println("Please enter a positive number.");
+      sc.close();
       return;
     }
 

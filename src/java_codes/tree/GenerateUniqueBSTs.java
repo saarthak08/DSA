@@ -49,6 +49,7 @@ public class GenerateUniqueBSTs {
 
     if (n <= 0) {
       System.out.println("Please enter a positive number.");
+      sc.close();
       return;
     }
 
@@ -71,6 +72,7 @@ public class GenerateUniqueBSTs {
       return new ArrayList<>();
     }
     // DP table to store results of subproblems
+    @SuppressWarnings("unchecked")
     List<TreeNode>[][] dp = new List[n + 1][n + 1];
     return generateTreesRec(1, n, dp);
   }

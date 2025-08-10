@@ -36,6 +36,7 @@ public class Prims {
     System.out.println("Enter the number of edges: ");
     int e = sc.nextInt();
 
+    @SuppressWarnings("unchecked")
     ArrayList<GraphEdge>[] adjList = new ArrayList[v];
     for (int i = 0; i < v; i++) {
       adjList[i] = new ArrayList<>();

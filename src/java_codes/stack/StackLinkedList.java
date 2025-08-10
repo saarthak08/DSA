@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class StackLinkedList {
 
   private Node top;
+  @SuppressWarnings("unused")
   private int size;
 
   private static class Node {

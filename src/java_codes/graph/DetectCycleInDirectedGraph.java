@@ -30,6 +30,7 @@ import java.util.Scanner;
 public class DetectCycleInDirectedGraph {
   private static final Scanner sc = new Scanner(System.in);
 
+  @SuppressWarnings("unchecked")
   public static void main(String[] args) {
     System.out.println("Enter the number of vertices: ");
     int v = sc.nextInt();
@@ -38,6 +39,7 @@ public class DetectCycleInDirectedGraph {
 
     // Adjacency list to represent the graph
     // Time Complexity for initialization: O(V)
+    @SuppressWarnings("rawtypes")
     ArrayList[] adjList = new ArrayList[v];
     for (int i = 0; i < v; i++) {
       adjList[i] = new ArrayList<>();

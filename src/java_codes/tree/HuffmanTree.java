@@ -8,26 +8,45 @@ import java.util.Scanner;
 /**
  * Implements the Huffman coding algorithm for data compression.
  *
- * <p>Huffman coding is a lossless data compression algorithm that assigns variable-length codes to
- * input characters, lengths of the assigned codes are based on the frequencies of corresponding
- * characters. The most frequent character gets the smallest code and the least frequent character
+ * <p>
+ * Huffman coding is a lossless data compression algorithm that assigns
+ * variable-length codes to
+ * input characters, lengths of the assigned codes are based on the frequencies
+ * of corresponding
+ * characters. The most frequent character gets the smallest code and the least
+ * frequent character
  * gets the largest code.
  *
- * <p>Algorithm Steps: 1. Calculate the frequency of each character in the input string. 2. Create a
- * leaf node for each unique character and build a min-heap (PriorityQueue) of all leaf nodes. The
- * priority is determined by the frequency of the character. 3. Repeatedly extract the two nodes
- * with the minimum frequency from the heap. 4. Create a new internal node with a frequency equal to
- * the sum of the two nodes' frequencies. Make the first extracted node its left child and the
- * second extracted node its right child. 5. Add this new node back to the min-heap. 6. Repeat steps
- * 3-5 until the heap contains only one node, which is the root of the Huffman Tree. 7. Traverse the
- * tree from the root to generate the prefix codes for each character. (0 for left, 1 for right).
+ * <p>
+ * Algorithm Steps: 1. Calculate the frequency of each character in the input
+ * string. 2. Create a
+ * leaf node for each unique character and build a min-heap (PriorityQueue) of
+ * all leaf nodes. The
+ * priority is determined by the frequency of the character. 3. Repeatedly
+ * extract the two nodes
+ * with the minimum frequency from the heap. 4. Create a new internal node with
+ * a frequency equal to
+ * the sum of the two nodes' frequencies. Make the first extracted node its left
+ * child and the
+ * second extracted node its right child. 5. Add this new node back to the
+ * min-heap. 6. Repeat steps
+ * 3-5 until the heap contains only one node, which is the root of the Huffman
+ * Tree. 7. Traverse the
+ * tree from the root to generate the prefix codes for each character. (0 for
+ * left, 1 for right).
  *
- * <p>Time Complexity: O(n log n), where n is the number of unique characters. - Building the
- * frequency map: O(L) where L is the length of the input string. - Building the priority queue: O(n
- * log n) - Building the tree: O(n log n) as each extraction and insertion takes O(log n). -
+ * <p>
+ * Time Complexity: O(n log n), where n is the number of unique characters. -
+ * Building the
+ * frequency map: O(L) where L is the length of the input string. - Building the
+ * priority queue: O(n
+ * log n) - Building the tree: O(n log n) as each extraction and insertion takes
+ * O(log n). -
  * Generating codes: O(n) to traverse the final tree.
  *
- * <p>Space Complexity: O(n) for the frequency map, priority queue, and the Huffman tree itself.
+ * <p>
+ * Space Complexity: O(n) for the frequency map, priority queue, and the Huffman
+ * tree itself.
  */
 public class HuffmanTree {
 
@@ -120,6 +139,7 @@ public class HuffmanTree {
 
     if (input == null || input.isEmpty()) {
       System.out.println("Input string is empty.");
+      sc.close();
       return;
     }
 
